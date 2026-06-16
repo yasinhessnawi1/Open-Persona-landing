@@ -111,8 +111,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing:
     background var(--motion-duration-normal) var(--motion-ease-standard);
 }
 .nav.is-scrolled { border-bottom-color: var(--border); }
-.brand { display: flex; align-items: center; gap: 0.55rem; font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; color: var(--foreground); text-decoration: none; }
-.brand__dot { width: 11px; height: 11px; border-radius: 9999px; background: var(--primary); box-shadow: 0 0 14px 1px oklch(0.66 0.19 33 / 0.8); }
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.brand__logo { display: block; height: 34px; width: auto; }
 .nav__spacer { flex: 1; }
 .nav__links { display: flex; align-items: center; gap: 0.35rem; }
 .nav__link { font-family: var(--font-sans); font-size: 0.9rem; color: var(--muted-foreground); text-decoration: none; padding: 0.4rem 0.7rem; border-radius: var(--radius-md); transition: color var(--motion-duration-fast) var(--motion-ease-standard), background var(--motion-duration-fast) var(--motion-ease-standard); }

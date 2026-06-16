@@ -32,11 +32,50 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const TITLE = "Open Persona: AI personas that remember";
+const DESCRIPTION =
+  "Build and run AI personas with real memory and one consistent identity across voice and text. Source-available core, hosted API, real-time voice" +
+  (VOICE_LIVE ? "." : " coming soon.");
+
 export const metadata: Metadata = {
-  title: "Open Persona: AI personas that remember",
-  description:
-    "Build and run AI personas with real memory and one consistent identity across voice and text. Source-available core, hosted API, real-time voice" +
-    (VOICE_LIVE ? "." : " coming soon."),
+  // Marketing root (the app lives at app.openpersona.online). Used to resolve
+  // the relative OG/icon URLs to absolute — update if the landing deploys elsewhere.
+  metadataBase: new URL("https://openpersona.online"),
+  title: TITLE,
+  description: DESCRIPTION,
+  applicationName: "Open Persona",
+  icons: {
+    icon: [
+      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/brand/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/brand/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/brand/apple-touch-icon.png",
+    shortcut: "/brand/favicon.ico",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Open Persona",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "/",
+    images: [
+      {
+        url: "/brand/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Open Persona",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/brand/og-image.png"],
+  },
 };
 
 export default function RootLayout({

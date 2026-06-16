@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { links, anchors } from "@/lib/links";
 
 export function Footer() {
@@ -5,8 +6,14 @@ export function Footer() {
     <footer className="footer">
       <div className="wrap footer__row">
         <a className="brand" href={anchors.top}>
-          <span className="brand__dot" />
-          Open&nbsp;Persona
+          <Image
+            src="/brand/logo-lockup-horizontal-dark.svg"
+            alt="Open Persona"
+            width={132}
+            height={37}
+            unoptimized
+            className="brand__logo"
+          />
         </a>
         <nav className="footer__links" aria-label="Footer">
           <a href={anchors.problem}>Why</a>

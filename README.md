@@ -99,16 +99,18 @@ deploy** — leave it `false` if voice isn't live for visitors yet.
 
 | Item | Where | Status |
 |---|---|---|
-| **Real logo** | the `.brand` mark (Fraunces wordmark + vermilion dot) in `Nav.tsx` / `Footer.tsx` | currently the wordmark |
 | **Voice-demo video** | the hidden placeholder in `Voice.tsx` (`data-ph="voice demo video"`) | placeholder |
 | **Voice claim** | `VOICE_LIVE` in `src/config/launch.ts` | decide at deploy |
-| App / sign-up / log-in | `links.app` / `links.signup` / `links.login` → `app.openperson.online` | wired |
-| Docs | `links.docs` → `app.openperson.online/docs` | wired (site not live yet) |
+| Brand (logo, favicons, OG) | `public/brand/*`, wired in `Nav.tsx` / `Footer.tsx` / `layout.tsx` | wired |
+| App / sign-up / log-in | `links.app` / `links.signup` / `links.login` → `app.openpersona.online` | wired |
+| Docs | `links.docs` → `app.openpersona.online/docs` | wired (site not live yet) |
 | GitHub repo | `links.github` | wired |
 | PyPI (`persona-core`) | `links.pypi` | wired (verified on PyPI) |
 
 All URLs live in one place — [`src/lib/links.ts`](src/lib/links.ts). The only
 in-page placeholder left is the voice-demo video (`data-ph="voice demo video"`).
+The social/OG `metadataBase` in `layout.tsx` is set to `https://openpersona.online`
+— update it if the landing deploys to a different domain.
 *(Optional: the page uses faux in-brand panels instead of product screenshots by
 design — swap in real captures if you prefer.)*
 

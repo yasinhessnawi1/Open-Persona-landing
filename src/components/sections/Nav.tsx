@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { links, anchors } from "@/lib/links";
 
@@ -6,8 +7,15 @@ export function Nav() {
   return (
     <header className="nav">
       <a className="brand" href={anchors.top}>
-        <span className="brand__dot" />
-        Open&nbsp;Persona
+        <Image
+          src="/brand/logo-lockup-horizontal-dark.svg"
+          alt="Open Persona"
+          width={132}
+          height={37}
+          priority
+          unoptimized
+          className="brand__logo"
+        />
       </a>
       <div className="nav__spacer" />
       <nav className="nav__links" aria-label="Primary">
