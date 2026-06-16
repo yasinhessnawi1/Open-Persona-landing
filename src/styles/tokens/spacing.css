@@ -1,0 +1,58 @@
+/*
+ * Open Persona — radius, spacing posture, elevation, motion.
+ *
+ * Spacing: Tailwind v4 default scale in the product. Density posture —
+ * "generous enough to breathe, tight enough to feel precise." No custom
+ * spacing tokens; reach for the existing scale.
+ *
+ * Radius: one root --radius with derived steps. Corners are gentle, never
+ * pill (small controls cap their radius to prevent capsule shapes).
+ *
+ * Elevation: four named tiers; cards prefer a 1px ring (paper-on-paper) over
+ * a drop shadow — popovers/sheets/modals escalate to the shadow tiers.
+ *
+ * Motion: three durations + two easings. Fast snaps, normal transitions, slow
+ * reveals. The reduced-motion path collapses durations to ~0 and silences
+ * decorative animation; functional motion (streaming text, timelines) stays.
+ */
+:root {
+  /* ---- Radius --------------------------------------------------------- */
+  --radius: 0.5rem; /* 8px base */
+  --radius-sm: calc(var(--radius) * 0.6); /* 4.8px */
+  --radius-md: calc(var(--radius) * 0.8); /* 6.4px */
+  --radius-lg: var(--radius); /* 8px */
+  --radius-xl: calc(var(--radius) * 1.4); /* 11.2px */
+  --radius-2xl: calc(var(--radius) * 1.8); /* 14.4px */
+  --radius-3xl: calc(var(--radius) * 2.2); /* 17.6px */
+  --radius-4xl: calc(var(--radius) * 2.6); /* 20.8px */
+
+  /* ---- Elevation ------------------------------------------------------ */
+  --elevation-0: none;
+  --elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* subtle card lift */
+  --elevation-2: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* popover */
+  --elevation-3: 0 10px 15px -3px rgb(0 0 0 / 0.12), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* modal/sheet */
+
+  /* ---- Motion --------------------------------------------------------- */
+  --motion-duration-fast: 120ms; /* @kind other */
+  --motion-duration-normal: 200ms; /* @kind other */
+  --motion-duration-slow: 320ms; /* @kind other */
+  --motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --motion-ease-emphasized: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  .dark {
+    --motion-duration-fast: 0.01ms; /* @kind other */
+    --motion-duration-normal: 0.01ms; /* @kind other */
+    --motion-duration-slow: 0.01ms; /* @kind other */
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

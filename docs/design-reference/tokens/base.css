@@ -1,0 +1,35 @@
+/*
+ * Open Persona — base layer. Sets the warm paper canvas + ink text + Geist as
+ * the default UI face. Consumers linking styles.css inherit these on <body>.
+ */
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
+}
+*,
+*::before,
+*::after {
+  border-color: var(--border);
+}
+::selection {
+  background: oklch(0.585 0.196 30 / 0.18);
+}
+
+/* Identity colour helper — resolves whatever --identity-h/l/c are in scope. */
+.identity-fg {
+  color: oklch(var(--identity-l) var(--identity-c) var(--identity-h));
+}
+.identity-bg {
+  background: oklch(var(--identity-l) var(--identity-c) var(--identity-h));
+}
+.identity-border-l {
+  border-left: 2px solid oklch(var(--identity-l) var(--identity-c) var(--identity-h));
+}

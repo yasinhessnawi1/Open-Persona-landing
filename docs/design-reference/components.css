@@ -1,0 +1,309 @@
+/*
+ * Open Persona — component classes. The reusable primitives consume these
+ * (so hover/focus/active states live in CSS, not inline). All values resolve
+ * through the token layer. Mirrors the production shadcn `base-nova` feel.
+ */
+
+/* ----------------------------------------------------------------- Button */
+.op-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 2rem;
+  padding: 0 0.625rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-size: var(--text-ui-size);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  color: var(--foreground);
+  transition: background var(--motion-duration-fast) var(--motion-ease-standard),
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+}
+.op-btn:focus-visible {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px oklch(0.585 0.196 30 / 0.35);
+}
+.op-btn:active:not([aria-haspopup]) {
+  transform: translateY(1px);
+}
+.op-btn[disabled],
+.op-btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.op-btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.op-btn--default {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.op-btn--default:hover {
+  background: oklch(0.585 0.196 30 / 0.85);
+}
+.dark .op-btn--default:hover {
+  background: oklch(0.66 0.19 33 / 0.85);
+}
+.op-btn--secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.op-btn--secondary:hover {
+  background: color-mix(in oklch, var(--secondary) 80%, var(--background));
+}
+.op-btn--outline {
+  border-color: var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+.op-btn--outline:hover {
+  background: var(--muted);
+}
+.op-btn--ghost {
+  background: transparent;
+  color: var(--foreground);
+}
+.op-btn--ghost:hover {
+  background: var(--muted);
+}
+.op-btn--destructive {
+  background: oklch(0.577 0.245 27.325 / 0.1);
+  color: var(--destructive);
+}
+.op-btn--destructive:hover {
+  background: oklch(0.577 0.245 27.325 / 0.2);
+}
+.op-btn--link {
+  background: transparent;
+  color: var(--primary);
+  padding: 0;
+  height: auto;
+  text-underline-offset: 4px;
+}
+.op-btn--link:hover {
+  text-decoration: underline;
+}
+
+.op-btn--sm {
+  height: 1.75rem;
+  padding: 0 0.625rem;
+  font-size: 0.8rem;
+  border-radius: min(var(--radius-md), 12px);
+}
+.op-btn--lg {
+  height: 2.5rem;
+  padding: 0 1.125rem;
+  font-size: var(--text-ui-size);
+}
+.op-btn--icon {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+}
+
+/* ------------------------------------------------------------------ Badge */
+.op-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: fit-content;
+  height: 1.25rem;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-4xl);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+.op-badge--default {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.op-badge--secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.op-badge--outline {
+  border-color: var(--border);
+  color: var(--foreground);
+}
+.op-badge--destructive {
+  background: oklch(0.577 0.245 27.325 / 0.1);
+  color: var(--destructive);
+}
+.op-badge svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ------------------------------------------------------- Tier badge (mono) */
+.op-tier {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.op-tier--frontier {
+  border-color: oklch(0.585 0.196 30 / 0.4);
+  color: var(--tier-frontier);
+}
+.op-tier--mid {
+  border-color: oklch(0.6 0.135 70 / 0.5);
+  color: var(--tier-mid);
+}
+.op-tier--small {
+  border-color: oklch(0.6 0.045 232 / 0.5);
+  color: var(--tier-small);
+}
+
+/* ------------------------------------------------------------------- Card */
+.op-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  padding: 1rem 0;
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  color: var(--card-foreground);
+  font-size: var(--text-ui-size);
+  box-shadow: 0 0 0 1px oklch(0.24 0.012 55 / 0.1);
+}
+.dark .op-card {
+  box-shadow: 0 0 0 1px oklch(0.94 0.008 75 / 0.1);
+}
+.op-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 1rem;
+}
+.op-card__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.op-card__desc {
+  font-size: var(--text-ui-size);
+  color: var(--muted-foreground);
+}
+.op-card__content {
+  padding: 0 1rem;
+}
+.op-card__footer {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  background: oklch(0.955 0.01 72 / 0.5);
+}
+.dark .op-card__footer {
+  background: oklch(0.27 0.01 60 / 0.5);
+}
+
+/* ----------------------------------------------------------- PersonaAvatar */
+.op-avatar {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+}
+.op-avatar--fill {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #fff;
+}
+.op-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ----------------------------------------------------- Identity header/card */
+.op-identity-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.op-persona-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  transition: border-color var(--motion-duration-normal) var(--motion-ease-standard);
+}
+.op-persona-card:hover {
+  border-color: oklch(0.585 0.196 30 / 0.3);
+}
+.op-persona-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ----------------------------------------------------------- Input / area */
+.op-input,
+.op-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: var(--text-ui-size);
+  line-height: var(--text-ui-line-height);
+  transition: border-color var(--motion-duration-fast) var(--motion-ease-standard),
+    box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+}
+.op-textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+}
+.op-input::placeholder,
+.op-textarea::placeholder {
+  color: var(--muted-foreground);
+}
+.op-input:focus-visible,
+.op-textarea:focus-visible {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px oklch(0.585 0.196 30 / 0.25);
+}
+.op-input[disabled],
+.op-textarea[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}

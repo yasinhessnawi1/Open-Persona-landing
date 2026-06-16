@@ -1,0 +1,12 @@
+/*
+ * Open Persona — global stylesheet entry point.
+ * Consumers link THIS one file. It is an @import manifest only — every token,
+ * font-face, and utility ships through the closure below. Do not add rules here.
+ */
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/glass.css";
+@import "./tokens/base.css";
+@import "./components.css";

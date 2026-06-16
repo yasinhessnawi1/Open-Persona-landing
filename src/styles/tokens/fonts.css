@@ -1,0 +1,25 @@
+/*
+ * Open Persona — webfont token bindings (Next.js port).
+ *
+ * Three faces, all SIL OFL 1.1:
+ *   - Fraunces   → --font-display  (persona names, headings — the editorial warmth)
+ *   - Geist      → --font-sans     (UI + body — neutral instrument)
+ *   - Geist Mono → --font-mono     (code, YAML, tier badges, captions)
+ *
+ * PORT NOTE: the static prototype loaded these from the Google Fonts CDN via an
+ * @import. In this Next.js project they are self-hosted at build time by
+ * `next/font/google` (see src/app/layout.tsx), which injects the CSS variables
+ * --font-fraunces / --font-geist / --font-geist-mono onto <html>. This file maps
+ * the production design-system token names onto those next/font variables, with
+ * the same fallback stacks the system used. This is the production path the
+ * tokens/fonts.css comment called for — no CDN @import.
+ */
+:root {
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-sans:
+    var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, "SF Mono", "Menlo", "Consolas",
+    monospace;
+}

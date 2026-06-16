@@ -1,0 +1,58 @@
+/*
+ * Open Persona — type scale. Six semantic roles (spec §7). Fraunces heads
+ * personas + headings; Geist carries UI/body; Geist Mono carries code, YAML,
+ * tier badges, and uppercase micro-captions. Sizes are tokens; consume them
+ * via the `.type-*` utility classes (the `.type-` namespace avoids colliding
+ * with Tailwind text-* utilities in the production app).
+ */
+:root {
+  --text-display-size: 2.25rem; /* 36px — persona names, big headings */
+  --text-display-line-height: 1.15;
+  --text-heading-size: 1.5rem; /* 24px — h2 / section headings */
+  --text-heading-line-height: 1.25;
+  --text-body-size: 0.9375rem; /* 15px — conversation / article body */
+  --text-body-line-height: 1.6;
+  --text-ui-size: 0.875rem; /* 14px — UI text, buttons, labels */
+  --text-ui-line-height: 1.45;
+  --text-caption-size: 0.65rem; /* 10.4px — badges, metadata, micro-labels */
+  --text-caption-line-height: 1.4;
+  --text-code-size: 0.85rem; /* 13.6px — monospace body */
+  --text-code-line-height: 1.5;
+}
+
+.type-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-line-height);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.type-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-size);
+  line-height: var(--text-heading-line-height);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.type-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
+}
+.type-ui {
+  font-family: var(--font-sans);
+  font-size: var(--text-ui-size);
+  line-height: var(--text-ui-line-height);
+}
+.type-caption {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.type-code {
+  font-family: var(--font-mono);
+  font-size: var(--text-code-size);
+  line-height: var(--text-code-line-height);
+}

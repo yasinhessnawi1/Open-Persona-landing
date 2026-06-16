@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Open Persona — AI personas that remember</title>
+<meta name="description" content="Build and run AI personas with real, typed memory and one continuous identity across voice and text. Source-available core, hosted API, real-time voice." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+
+  <!-- ============================ NAV ============================ -->
+  <header class="nav">
+    <a class="brand" href="#top"><span class="brand__dot"></span>Open&nbsp;Persona</a>
+    <div class="nav__spacer"></div>
+    <nav class="nav__links">
+      <a class="nav__link" href="#problem">Why</a>
+      <a class="nav__link" href="#memory">Memory</a>
+      <a class="nav__link" href="#capabilities">Capabilities</a>
+      <a class="nav__link" href="#architecture">Architecture</a>
+      <!-- PLACEHOLDER: real docs URL -->
+      <a class="nav__link" href="#" data-ph="docs URL">Docs</a>
+    </nav>
+    <!-- PLACEHOLDER: real GitHub repo URL -->
+    <a class="btn btn--ghost" href="https://github.com/yasinhessnawi1/Open-Persona" data-ph="GitHub URL">
+      <i data-lucide="github"></i>Star
+    </a>
+    <a class="btn btn--primary" href="#get-started">Get started</a>
+  </header>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="top">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero__fallback" aria-hidden="true"></div>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <p class="kicker">Typed-memory AI personas</p>
+      <h1>They remember you.<br />And they stay <span class="accent">themselves.</span></h1>
+      <p class="lede hero__lede">Most chatbots are stateless — they forget, they drift, they're a system prompt wearing a name. Open Persona personas have real, typed memory and one continuous identity, whether you type to them or talk.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#get-started">Start building <i data-lucide="arrow-right"></i></a>
+        <!-- PLACEHOLDER: GitHub URL -->
+        <a class="btn btn--ghost" href="https://github.com/yasinhessnawi1/Open-Persona" data-ph="GitHub URL"><i data-lucide="github"></i>Source-available</a>
+      </div>
+      <div class="hero__meta">
+        <div class="tier-rail" title="Per-turn model routing escalates cool → hot">
+          <span class="lbl">Routing</span>
+          <span class="dot" style="background:var(--tier-small)"></span>
+          <span class="line"></span>
+          <span class="dot" style="background:var(--tier-mid)"></span>
+          <span class="line"></span>
+          <span class="dot" style="background:var(--tier-frontier)"></span>
+          <span class="lbl">small · mid · frontier</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= THE PROBLEM (pinned) ========================= -->
+  <section class="problem" id="problem">
+    <div class="problem__stage">
+      <div class="wrap">
+        <div class="section__head reveal" style="margin-bottom:clamp(28px,5vh,56px)">
+          <p class="kicker">The problem</p>
+          <h2>AI forgets.<br />Personas drift.</h2>
+          <p class="lede">A stateless model rebuilds "who it is" from scratch every turn. Keep talking and the character erodes — facts contradict, the voice wanders, the constraints slip. Open Persona holds the line.</p>
+        </div>
+        <div class="problem__grid">
+          <div class="panel panel--stateless reveal">
+            <p class="panel__tag">Stateless chatbot · turn 14</p>
+            <h3 style="margin:0.5rem 0 1rem">Memory rebuilt every turn</h3>
+            <div class="frag">
+              <div class="memrow"><span class="key">name</span><span class="val">"Astrid" · then "Astri" · then ?</span></div>
+              <div class="memrow"><span class="key">stance</span><span class="val">cites law → hedges → contradicts</span></div>
+              <div class="memrow"><span class="key">recall</span><span class="val">"we never discussed that"</span></div>
+              <div class="memrow"><span class="key">voice</span><span class="val">formal → chatty → generic</span></div>
+              <div class="memrow"><span class="key">limits</span><span class="val">constraint forgotten</span></div>
+            </div>
+          </div>
+          <div class="panel panel--persona reveal" style="opacity:0">
+            <p class="panel__tag">Open Persona · turn 14</p>
+            <h3 style="margin:0.5rem 0 1rem">Typed memory, intact</h3>
+            <div>
+              <div class="memrow"><span class="memdot" style="background:var(--store-identity)"></span><span class="key">identity</span><span class="val">Astrid — fixed at runtime</span></div>
+              <div class="memrow"><span class="memdot" style="background:var(--store-self)"></span><span class="key">self_facts</span><span class="val">specialises in husleieloven</span></div>
+              <div class="memrow"><span class="memdot" style="background:var(--store-world)"></span><span class="key">worldview</span><span class="val">conservative on legal advice</span></div>
+              <div class="memrow"><span class="memdot" style="background:var(--store-episodic)"></span><span class="key">episodic</span><span class="val">remembers turn 2 &amp; 9</span></div>
+              <div class="memrow"><span class="memdot" style="background:var(--primary)"></span><span class="key">constraint</span><span class="val">never gives binding advice</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="lede problem__verdict reveal" style="text-align:center;margin-top:clamp(28px,5vh,52px);opacity:0">The entity you talk to is the entity you type to — at turn&nbsp;2 and at turn&nbsp;200.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TYPED MEMORY ========================= -->
+  <section class="section memory" id="memory">
+    <div class="wrap">
+      <div class="memory__layout">
+        <div class="memory__sticky">
+          <div class="section__head reveal">
+            <p class="kicker">Typed memory</p>
+            <h2>Four stores.<br />One mind.</h2>
+            <p class="lede">Memory isn't a blob of chat history. Each persona has four structured, versioned, typed stores — plus enforced constraints. Every one is queryable, auditable, and the same whether the turn came by voice or text.</p>
+          </div>
+          <div class="stores">
+            <div class="store" style="border-left-color:var(--store-identity)">
+              <span class="store__badge" style="background:var(--store-identity)">ID</span>
+              <div>
+                <h3>identity</h3>
+                <p>Who they are — name, role, the spine of the character. Immutable at runtime.</p>
+                <p class="store__meta">read-only · validated on author</p>
+              </div>
+            </div>
+            <div class="store" style="border-left-color:var(--store-self)">
+              <span class="store__badge" style="background:var(--store-self)">SF</span>
+              <div>
+                <h3>self_facts</h3>
+                <p>What they've learned about themselves over time — capabilities, specialisations, limits.</p>
+                <p class="store__meta">append-only · versioned · rollback</p>
+              </div>
+            </div>
+            <div class="store" style="border-left-color:var(--store-world)">
+              <span class="store__badge" style="background:var(--store-world)">WV</span>
+              <div>
+                <h3>worldview</h3>
+                <p>Their views and stances — the opinions that make the voice consistent instead of mushy.</p>
+                <p class="store__meta">typed · epistemic markers</p>
+              </div>
+            </div>
+            <div class="store" style="border-left-color:var(--store-episodic)">
+              <span class="store__badge" style="background:var(--store-episodic)">EP</span>
+              <div>
+                <h3>episodic</h3>
+                <p>Everything from past conversations — retrieved, summarised, compacted. The long memory.</p>
+                <p class="store__meta">pgvector + Chroma · summarise &amp; compact</p>
+              </div>
+            </div>
+          </div>
+          <span class="constraint-chip"><i data-lucide="shield"></i>+ enforced constraints — the things a persona will not do</span>
+        </div>
+        <div class="memory__viz" aria-hidden="true">
+          <canvas id="memory-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= VOICE ========================= -->
+  <section class="section voice" id="voice">
+    <div class="wrap voice__inner">
+      <div class="reveal">
+        <p class="kicker">Real-time voice</p>
+        <h2 class="section__head" style="margin-bottom:0">Say it out loud.<br />It remembers when you type.</h2>
+        <p class="lede" style="margin-top:1.2rem;max-width:42ch">Talk to your persona hands-free; it answers in its own synthesized voice, sub-second. Voice and text aren't two products bolted together — they share the same memory, the same constraints, the same identity. Speak a fact now; type next week and it's still there.</p>
+        <div class="turns">
+          <div class="turn turn--voice"><span class="turn__mode">▮ Voice · spoken</span>"Remember I'm contesting the deposit, not the rent."</div>
+          <div class="turn turn--text"><span class="turn__mode">⌨ Text · 6 days later</span>What was my case about again?</div>
+          <div class="turn turn--voice"><span class="turn__mode">▮ Same persona · same memory</span>"The deposit deduction for the smoke damage — you weren't contesting the rent."</div>
+        </div>
+        <!-- PLACEHOLDER: drop the real voice-demo video here (replace this block). Kept in source but hidden in the frontend. -->
+        <p class="kicker kicker--muted ph" style="margin-top:1.6rem; display:none" data-ph="voice demo video">▶ Placeholder — swap in the real voice-demo video</p>
+      </div>
+      <div class="wave reveal" aria-hidden="true">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CAPABILITIES ========================= -->
+  <section class="section" id="capabilities">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <p class="kicker">Capabilities</p>
+        <h2>A persona that can<br />actually do things.</h2>
+        <p class="lede">Memory makes it consistent. Tools, skills, and rich output make it useful — all rendered inline, all in character.</p>
+      </div>
+      <div class="caps__grid">
+        <div class="cap-list reveal">
+          <div class="cap__grid2" style="display:contents">
+            <div class="cap">
+              <span class="cap__icon"><i data-lucide="wrench"></i></span>
+              <h3>Tools</h3>
+              <p>Web search, calculator, currency, image generation, code execution — and any MCP server in the wild.</p>
+            </div>
+            <div class="cap">
+              <span class="cap__icon"><i data-lucide="file-text"></i></span>
+              <h3>Skills</h3>
+              <p>Document generation — docx, pdf, pptx, xlsx, markdown — produced on demand from a conversation.</p>
+            </div>
+            <div class="cap">
+              <span class="cap__icon"><i data-lucide="image"></i></span>
+              <h3>Rich output</h3>
+              <p>Images, Mermaid &amp; Graphviz diagrams, and files render inline in the conversation, not as links.</p>
+            </div>
+            <div class="cap">
+              <span class="cap__icon"><i data-lucide="git-branch"></i></span>
+              <h3>Smart routing</h3>
+              <p>Per-turn model routing puts a frontier model where quality matters and a small one everywhere else. Auto-generated avatars fit each persona.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- faux-live chat panel showing rich output -->
+        <div class="chatpanel reveal" role="img" aria-label="Example conversation with a persona rendering a tool call, a diagram, and a generated file inline">
+          <div class="chatpanel__bar">
+            <span class="av">KA</span>
+            <span class="nm">Kai</span>
+            <span class="tier">frontier</span>
+          </div>
+          <div class="chatpanel__body">
+            <div class="cmsg cmsg--user">Map our auth flow and export it as a PDF.</div>
+            <span class="tool-pill"><i data-lucide="search"></i> web_search · oauth pkce best practice → 5 results · 1.2s</span>
+            <div class="cmsg cmsg--bot">
+              Here's the flow as it stands, with PKCE on the mobile client:
+              <div class="diagram">
+                <span class="node">Client</span><span class="arrow">→</span>
+                <span class="node">/authorize</span><span class="arrow">→</span>
+                <span class="node">API</span><span class="arrow">→</span>
+                <span class="node">Token</span>
+              </div>
+            </div>
+            <div class="cmsg cmsg--bot">
+              <div class="filerow"><span class="ext">PDF</span> auth-flow.pdf · 2 pages · generated <i data-lucide="check" style="width:14px;height:14px;color:var(--store-self)"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ARCHITECTURE ========================= -->
+  <section class="section" id="architecture">
+    <div class="wrap">
+      <div class="section__head reveal" style="margin-inline:auto;text-align:center">
+        <p class="kicker">How it works</p>
+        <h2>Four layers.<br />Source-available core.</h2>
+        <p class="lede" style="margin-inline:auto">Each layer talks only to the one below it. Voice isn't a parallel stack — it's the same stack with audio wrapped around the turn loop. Real architecture, not a wrapper.</p>
+      </div>
+      <div class="arch__layers">
+        <div class="layer reveal">
+          <span class="layer__idx">01</span>
+          <div><h3>persona-web</h3><p>Next.js app — authoring, chat, voice client, billing.</p></div>
+          <span class="layer__pill layer__pill--hosted">hosted</span>
+        </div>
+        <div class="layer__conn" aria-hidden="true"></div>
+        <div class="layer reveal">
+          <span class="layer__idx">02</span>
+          <div><h3>persona-api</h3><p>FastAPI — auth, persona CRUD, SSE-streaming chat, agentic runs, LLM-assisted authoring.</p></div>
+          <span class="layer__pill layer__pill--hosted">hosted</span>
+        </div>
+        <div class="layer__conn" aria-hidden="true"></div>
+        <div class="layer reveal">
+          <span class="layer__idx">03</span>
+          <div><h3>persona-runtime</h3><p>Conversation loop, tier router, prompt builder, history compaction, plan-act-reflect agentic loop.</p></div>
+          <span class="layer__pill layer__pill--open">PolyForm-NC</span>
+        </div>
+        <div class="layer__conn" aria-hidden="true"></div>
+        <div class="layer reveal">
+          <span class="layer__idx">04</span>
+          <div><h3>persona-core</h3><p>The four typed memory stores, persona schema, model backends, image-gen, sandbox, CLI. <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--foreground)">pip install persona-core</code></p></div>
+          <span class="layer__pill layer__pill--open">PolyForm-NC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FINAL CTA ========================= -->
+  <section class="section finalcta" id="get-started">
+    <div class="wrap">
+      <div class="finalcta__inner reveal">
+        <p class="kicker">Get started</p>
+        <h2>Build a persona<br />that remembers.</h2>
+        <p class="lede">Install the source-available core, hit the hosted API, or open the web app. Star the repo and read the docs to go deeper.</p>
+        <div class="install">
+          <span class="dollar">$</span><span>pip install persona-core</span>
+          <button id="copy-install" type="button">copy</button>
+        </div>
+        <div class="finalcta__cta">
+          <a class="btn btn--primary" href="#" data-ph="web app / sign-up URL">Open the app <i data-lucide="arrow-right"></i></a>
+          <!-- PLACEHOLDER: GitHub URL -->
+          <a class="btn btn--ghost" href="https://github.com/yasinhessnawi1/Open-Persona" data-ph="GitHub URL"><i data-lucide="github"></i>Star on GitHub</a>
+          <!-- PLACEHOLDER: docs URL -->
+          <a class="btn btn--ghost" href="#" data-ph="docs URL"><i data-lucide="book-open"></i>Read the docs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="footer">
+    <div class="wrap footer__row">
+      <a class="brand" href="#top"><span class="brand__dot"></span>Open&nbsp;Persona</a>
+      <nav class="footer__links">
+        <a href="#problem">Why</a>
+        <a href="#memory">Typed memory</a>
+        <a href="#voice">Voice</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#architecture">Architecture</a>
+        <!-- PLACEHOLDER URLs -->
+        <a href="#" data-ph="docs URL">Docs</a>
+        <a href="https://github.com/yasinhessnawi1/Open-Persona" data-ph="GitHub URL">GitHub</a>
+        <a href="#" data-ph="PyPI URL">PyPI</a>
+      </nav>
+      <span class="footer__note">Typed memory · tier-routed · source-available core</span>
+    </div>
+  </footer>
+
+  <!-- ===================== libraries (CDN) ===================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script>window.lucide && window.lucide.createIcons();</script>
+  <script src="landing.js"></script>
+</body>
+</html>

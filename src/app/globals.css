@@ -1,0 +1,65 @@
+/*
+ * Open Persona — global stylesheet entry point (Next.js port of the design
+ * system's styles.css manifest). Tailwind v4 first, then the design-system
+ * token layer (reused verbatim from the product app — colours / typography /
+ * spacing / glass / base), then a @theme bridge so Tailwind utilities resolve
+ * to the SAME custom properties. Token names are load-bearing — never rename
+ * --primary / --accent (shadcn + Clerk depend on them).
+ *
+ * fonts.css maps --font-display / --font-sans / --font-mono onto the next/font
+ * variables injected by layout.tsx.
+ */
+@import "tailwindcss";
+
+@import "../styles/tokens/fonts.css";
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/glass.css";
+@import "../styles/tokens/base.css";
+
+/* design-system component primitives (op-*) + the landing page chrome —
+   both consume the token layer only. */
+@import "../styles/components.css";
+@import "../styles/landing.css";
+
+/*
+ * Bridge the design-system custom properties into Tailwind's theme so utilities
+ * (bg-background, text-foreground, font-display, …) read the live tokens and
+ * follow the .dark swap. `inline` keeps the var reference dynamic.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-tier-small: var(--tier-small);
+  --color-tier-mid: var(--tier-mid);
+  --color-tier-frontier: var(--tier-frontier);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+}

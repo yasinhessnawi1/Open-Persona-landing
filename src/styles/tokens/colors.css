@@ -1,0 +1,135 @@
+/*
+ * Open Persona — colour system. "Editorial instrument" (D-09-7).
+ *
+ * Warm paper/ink neutrals (hue ~55–75) + ONE sharp vermilion accent (hue 30)
+ * for active/live signals. Tier colours escalate cool→hot (small=slate ·
+ * mid=amber · frontier=vermilion); CHROMA — not lightness — carries the
+ * "firepower" signal. All values OKLCH. The token swap is the ONLY light/dark
+ * mechanism: toggle `class="dark"` on a root ancestor.
+ *
+ * Token-name translation table (D-F1-7, load-bearing):
+ *   "the accent" / "brand vermilion"  →  --primary   (== --tier-frontier)
+ *   "warm surface tint" / hover tint  →  --accent     (NOT the brand colour)
+ *   "ink" / body text                 →  --foreground
+ *   "paper" / background              →  --background
+ * Never rename --primary or --accent — consumed by shadcn primitives + Clerk.
+ */
+
+:root {
+  /* ---- Semantic core (light) ------------------------------------------ */
+  --background: oklch(0.985 0.006 75); /* warm cream paper */
+  --foreground: oklch(0.24 0.012 55); /* warm dark ink */
+  --card: oklch(0.997 0.004 75);
+  --card-foreground: oklch(0.24 0.012 55);
+  --popover: oklch(0.997 0.004 75);
+  --popover-foreground: oklch(0.24 0.012 55);
+  --primary: oklch(0.585 0.196 30); /* brand vermilion / primary action / focus ring */
+  --primary-foreground: oklch(0.995 0.008 80); /* lifted in T14 to clear WCAG-AA 4.5:1 */
+  --secondary: oklch(0.95 0.012 72); /* user message bubble / secondary buttons */
+  --secondary-foreground: oklch(0.3 0.012 55);
+  --muted: oklch(0.955 0.01 72); /* skeleton, inline-code bg */
+  --muted-foreground: oklch(0.52 0.012 58);
+  --accent: oklch(0.94 0.02 66); /* hover surface tint — NOT vermilion */
+  --accent-foreground: oklch(0.28 0.012 55);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0.012 72); /* decorative dividers (paper-on-paper) */
+  --input: oklch(0.9 0.012 72);
+  --ring: oklch(0.585 0.196 30);
+
+  /* ---- Tier temperature scale (cool → warm → hot) --------------------- */
+  /* hue 232 slate → 70 amber → 30 vermilion; chroma 0.045 → 0.135 → 0.196   */
+  /* lightness is NON-monotonic — chroma + hue carry the signal, not L.      */
+  --tier-small: oklch(0.6 0.045 232); /* slate-blue, low chroma — cool, dependable */
+  --tier-mid: oklch(0.6 0.135 70); /* warm amber, mid chroma — warming */
+  --tier-frontier: oklch(0.585 0.196 30); /* vermilion — hot, == --primary */
+
+  /* ---- Chart series --------------------------------------------------- */
+  --chart-1: oklch(0.585 0.196 30);
+  --chart-2: oklch(0.7 0.13 73);
+  --chart-3: oklch(0.6 0.045 232);
+  --chart-4: oklch(0.55 0.09 145);
+  --chart-5: oklch(0.5 0.12 330);
+
+  /* ---- Sidebar surface ------------------------------------------------ */
+  --sidebar: oklch(0.97 0.009 72);
+  --sidebar-foreground: oklch(0.24 0.012 55);
+  --sidebar-primary: oklch(0.585 0.196 30);
+  --sidebar-primary-foreground: oklch(0.99 0.01 80);
+  --sidebar-accent: oklch(0.94 0.018 66);
+  --sidebar-accent-foreground: oklch(0.28 0.012 55);
+  --sidebar-border: oklch(0.9 0.012 72);
+  --sidebar-ring: oklch(0.585 0.196 30);
+
+  /* ---- Persona identity scaffold (per-component overrides set these) --- */
+  /* Root fallback = vermilion so unwired consumers render the brand colour. */
+  --identity-h: 30; /* @kind other */
+  --identity-l: 0.585; /* @kind other */
+  --identity-c: 0.196; /* @kind other */
+}
+
+.dark {
+  --background: oklch(0.19 0.008 60); /* warm deep */
+  --foreground: oklch(0.94 0.008 75);
+  --card: oklch(0.225 0.009 60);
+  --card-foreground: oklch(0.94 0.008 75);
+  --popover: oklch(0.225 0.009 60);
+  --popover-foreground: oklch(0.94 0.008 75);
+  --primary: oklch(0.66 0.19 33);
+  --primary-foreground: oklch(0.2 0.02 40);
+  --secondary: oklch(0.27 0.01 60);
+  --secondary-foreground: oklch(0.94 0.008 75);
+  --muted: oklch(0.27 0.01 60);
+  --muted-foreground: oklch(0.71 0.012 75);
+  --accent: oklch(0.3 0.014 60);
+  --accent-foreground: oklch(0.94 0.008 75);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.92 0.015 75 / 10%);
+  --input: oklch(0.92 0.015 75 / 14%);
+  --ring: oklch(0.66 0.19 33);
+
+  --tier-small: oklch(0.66 0.05 232);
+  --tier-mid: oklch(0.74 0.13 75);
+  --tier-frontier: oklch(0.66 0.19 33);
+
+  --chart-1: oklch(0.66 0.19 33);
+  --chart-2: oklch(0.74 0.13 75);
+  --chart-3: oklch(0.66 0.05 232);
+  --chart-4: oklch(0.63 0.1 145);
+  --chart-5: oklch(0.6 0.12 330);
+
+  --sidebar: oklch(0.165 0.008 60);
+  --sidebar-foreground: oklch(0.92 0.008 75);
+  --sidebar-primary: oklch(0.66 0.19 33);
+  --sidebar-primary-foreground: oklch(0.2 0.02 40);
+  --sidebar-accent: oklch(0.27 0.012 60);
+  --sidebar-accent-foreground: oklch(0.94 0.008 75);
+  --sidebar-border: oklch(0.92 0.015 75 / 8%);
+  --sidebar-ring: oklch(0.66 0.19 33);
+
+  --identity-l: 0.66; /* @kind other */
+  --identity-c: 0.16; /* @kind other */
+}
+
+/*
+ * Persona identity palette (the §4 differentiator) — 12 curated OKLCH hues at
+ * fixed L=0.60, C=0.13, drawn from two zones of the hue wheel (greens-to-cyans
+ * + indigos-to-roses) that EXCLUDE the bands around brand vermilion (hue 30),
+ * tier-mid amber (hue 73) and tier-small slate (hue 232). Exposed as tokens for
+ * reference; runtime derivation (FNV-1a hash of persona.id → palette index) is
+ * in the PersonaAvatar component. Persona colour reinforces, never solely
+ * identifies — always paired with avatar + name. Never tint a content surface.
+ */
+:root {
+  --identity-chartreuse: oklch(0.6 0.13 90);
+  --identity-leaf: oklch(0.6 0.13 110);
+  --identity-forest: oklch(0.6 0.13 135);
+  --identity-sage: oklch(0.6 0.13 158);
+  --identity-teal: oklch(0.6 0.13 180);
+  --identity-sky: oklch(0.6 0.13 200);
+  --identity-indigo: oklch(0.6 0.13 260);
+  --identity-violet: oklch(0.6 0.13 280);
+  --identity-magenta: oklch(0.6 0.13 300);
+  --identity-fuchsia: oklch(0.6 0.13 320);
+  --identity-rose: oklch(0.6 0.13 340);
+  --identity-coral: oklch(0.6 0.13 355);
+}

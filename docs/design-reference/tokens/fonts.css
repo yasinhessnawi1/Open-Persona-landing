@@ -1,0 +1,24 @@
+/*
+ * Open Persona — webfonts.
+ *
+ * Three faces, all SIL OFL 1.1 (project-clean, Apache-2.0-compatible):
+ *   - Fraunces   → --font-display  (persona names, headings — the editorial warmth)
+ *   - Geist      → --font-sans     (UI + body — neutral instrument)
+ *   - Geist Mono → --font-mono     (code, YAML, tier badges, captions)
+ *
+ * NOTE (substitution flag): the production app loads these via next/font/google
+ * (self-hosted, build-time). Here they load from the Google Fonts CDN so cards
+ * and kits render offline-of-the-repo. To ship fully self-contained, drop the
+ * woff2 binaries into tokens/ and replace this @import with @font-face rules.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans:
+    "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:
+    "Geist Mono", ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  /* Alias the production token name (layout.tsx wires --font-geist-mono). */
+  --font-geist-mono: var(--font-mono);
+}
