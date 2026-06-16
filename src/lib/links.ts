@@ -12,8 +12,8 @@ export const links = {
   pypi: "https://pypi.org/project/persona-core/",
   // The hosted web app.
   app: "https://app.openpersona.online",
-  signup: "https://app.openpersona.online/signup",
-  login: "https://app.openpersona.online/login",
+  signup: "https://app.openpersona.online/sign-up",
+  login: "https://app.openpersona.online/sign-in",
   // Docs site is not live yet; the link points at its intended location.
   docs: "https://app.openpersona.online/docs",
 } as const;
